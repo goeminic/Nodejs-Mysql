@@ -14,6 +14,7 @@ app.use(morgan('dev'));
 
 
 //Routes
+app.use(require('./routes'));
 
 //Public
 
@@ -23,4 +24,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 18
+//quede en 20
