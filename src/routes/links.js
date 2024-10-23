@@ -15,13 +15,18 @@ router.post('/add', async (req,res) => {
         description
     };
     await pool.query('INSERT INTO links set ?', [newLink]);
-    res.send('received');
+    res.redirect('/links');
 });
 
 router.get('/', async (req,res) => {
     const links = await pool.query('SELECT * FROM links');
     console.log(links);
     res.render('links/list', { links });
+});
+
+router.delete('/delete/:id', async (req,res) => {
+    console.log(req.params.id);
+    res.send('Eliminado');
 });
 
 module.exports = router;
