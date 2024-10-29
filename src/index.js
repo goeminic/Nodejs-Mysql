@@ -2,6 +2,11 @@ const express = require('express');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session');
+
+const { database } = require('./keys'); 
 
 //initialilzations
 const app = express();
@@ -19,13 +24,20 @@ app.engine('.hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 
 //Middlewares
+app.use(session({
+    secret: 'mysqlnodesession',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(database)
+}));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-
+app.use(flash());
 
 //Global Variables
 app.use((req, res, next) => {
+    app.locals.success = req.flash('success');  
     next();
 });
 
@@ -46,4 +58,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 1:48:00                   
+//quede en 2:00:00 resolver error repecto de mensaje con configuracion de session en middleware 
