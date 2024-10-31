@@ -4,9 +4,11 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
-const MySQLStore = require('express-mysql-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 const { database } = require('./keys'); 
+
+const sessionStore = new MySQLStore(database);
 
 //initialilzations
 const app = express();
@@ -28,7 +30,7 @@ app.use(session({
     secret: 'mysqlnodesession',
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore(database)
+    store: sessionStore
 }));
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
@@ -58,4 +60,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 2:00:00 resolver error repecto de mensaje con configuracion de session en middleware 
+//quede en 2:03:00 verificar bootstrap error con mensaje (boton cerrar)SCRIPTS
