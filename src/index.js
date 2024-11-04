@@ -60,4 +60,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 2:03:00 verificar bootstrap error con mensaje (boton cerrar)SCRIPTS
+//quede en 2:06:00
