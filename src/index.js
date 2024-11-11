@@ -5,6 +5,8 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const passport = require('passport');
+
 
 const { database } = require('./keys'); 
 
@@ -12,6 +14,7 @@ const sessionStore = new MySQLStore(database);
 
 //initialilzations
 const app = express();
+require('./lib/passport');
 
 //settings
 app.set('port', process.env.PORT || 4000);
@@ -36,6 +39,8 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Global Variables
 app.use((req, res, next) => {
@@ -60,4 +65,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 2:13:00
+//quede en 2:26:00
