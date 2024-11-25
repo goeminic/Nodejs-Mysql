@@ -45,6 +45,7 @@ app.use(passport.session());
 //Global Variables
 app.use((req, res, next) => {
     app.locals.success = req.flash('success');  
+    app.locals.message = req.flash('message');
     next();
 });
 
@@ -65,4 +66,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 2:59:00
+//quede en 3:11:00
