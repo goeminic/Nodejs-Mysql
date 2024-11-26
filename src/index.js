@@ -46,6 +46,7 @@ app.use(passport.session());
 app.use((req, res, next) => {
     app.locals.success = req.flash('success');  
     app.locals.message = req.flash('message');
+    app.locals.user = req.user;
     next();
 });
 
@@ -66,4 +67,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 3:11:00
+//quede en 3:20:00 arreglar primero error en req.logout()

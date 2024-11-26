@@ -30,9 +30,13 @@ router.post('/signin', (req, res, next) => {
 
 
 router.get('/profile', (req,res) => {
-    res.send('Perfil de usuario');
+    res.render('profile');
 });
 
+router.get('/logout', (req, res) => {
+    req.logOut();
+    res.redirect('/signin');
+});
 
 
 module.exports = router;
