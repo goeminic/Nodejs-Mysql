@@ -33,9 +33,13 @@ router.get('/profile', (req,res) => {
     res.render('profile');
 });
 
-router.get('/logout', (req, res) => {
-    req.logOut();
-    res.redirect('/signin');
+router.get('/logout', (req, res, next) => {
+    req.logOut((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect('/signin');  
+    });    
 });
 
 

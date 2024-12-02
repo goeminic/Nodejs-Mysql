@@ -67,4 +67,4 @@ app.listen(app.get('port'), () => {
 });
 
 
-//quede en 3:20:00 arreglar primero error en req.logout()
+//quede en 3:20:00
